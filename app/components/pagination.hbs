@@ -1,0 +1,39 @@
+<div class="pagination ui-pagination">
+    {{#if @isLoading}}
+        <div class="flex items-center justify-center mr-2">
+            <Spinner />
+        </div>
+    {{/if}}
+    <div class="meta-info">
+        <span class="content-viewing">
+            {{this.from}} - {{this.to}}
+        </span>
+        <span class="content-total">
+            of {{this.totalResults}}
+        </span>
+    </div>
+    <div class="pages-info">
+        <button type="button" class="page-item-arrow {{unless this.canStepBackward "disabled" ""}}" disabled={{not this.canStepBackward}} {{on "click" (fn this.incrementPage -1)}}>
+            {{svg-jar "left-16px"}}
+        </button>
+
+        <div class="page-links">
+            {{#each this.pageItems as |item|}}
+                <button type="button" class="page-item {{if item.current "active"}}" disabled={{or item.active item.dots}} {{on "click" (fn this.goToPage item.page)}}>
+                    {{#if item.dots}}
+                        <span>
+                            ...
+                        </span>
+                    {{else}}
+                        {{item.page}}
+                    {{/if}}
+                </button>
+            {{/each}}
+        </div>
+
+        <button type="button" class="page-item-arrow {{unless this.canStepForward "disabled" ""}}" disabled={{not this.canStepForward}} {{on "click" (fn this.incrementPage 1)}}>
+            {{svg-jar "right-16px"}}
+        </button>
+    </div>
+</div>
+{{yield}}

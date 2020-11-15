@@ -1,0 +1,29 @@
+<BasicDropdown
+    ...attributes
+    @renderInPlace={{@renderInPlace}}
+    @registerAPI={{@registerAPI}}
+    @horizontalPosition={{@horizontalPosition}}
+    @verticalPosition={{@verticalPosition}}
+    @calculatePosition={{@calculatePosition}}
+    @onOpen={{@onOpen}}
+    @onClose={{@onClose}} as |dd|
+>
+    <dd.Trigger class={{@triggerClass}}>
+        <Ui::Button title={{@text}} class={{@buttonClass}} @type={{this.type}} @active={{@active}} @size={{this.buttonSize}} @isLoading={{@isLoading}} disabled={{@disabled}}>
+            {{#if @icon}}
+                <FaIcon @icon={{@icon}} class={{@iconClass}} />
+            {{/if}}
+
+            {{#if @img}}
+                <img src={{@img}} class={{@imgClass}} alt={{or @alt "image"}} />
+            {{/if}}
+            
+            <span class={{@textClass}}>
+                {{@text}}
+            </span>
+        </Ui::Button>
+    </dd.Trigger>
+    <dd.Content class={{@contentClass}} @overlay={{@overlay}}>
+        {{yield dd}}
+    </dd.Content>
+</BasicDropdown>

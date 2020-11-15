@@ -1,0 +1,80 @@
+select.form-input-sm,
+input.form-input.form-input-sm {
+    @apply px-2.5 py-1.5 text-xs leading-4;
+}
+
+select.form-select.form-input-sm,
+select.form-input-sm {
+    @apply pr-8;
+}
+
+select.form-input-md,
+input.form-input.form-input-md {
+    @apply px-3 py-2 text-sm leading-4;
+}
+
+body.ui-console {
+    & .form-input {
+        @apply text-sm;
+    }
+}
+
+.ui-input,
+.ui-input .form-input {
+    @apply text-xs leading-4;
+}
+
+/** model select **/
+.ui-model-select .ember-power-select-trigger.form-select .ember-power-select-status-icon {
+    @apply hidden;
+}
+
+/** icons within input **/
+.ui-input.with-left-icon .form-input {
+    padding-left: 1.9rem;
+}
+.ui-input.with-right-icon .form-input {
+    padding-right: 1.6rem;
+}
+
+.ui-input .input-icon {
+    position: absolute;
+    top: 0;
+    padding-top: 0.5rem;
+}
+
+.ui-input .input-icon.input-icon-left {
+    left: 0;
+    padding-left: 0.5rem;
+}
+
+.ui-input .input-icon.input-icon-right {
+    right: 0;
+    padding-right: 0.5rem;
+}
+
+select.form-select {
+    @apply text-sm;
+}
+
+body[data-theme='dark'] .form-input,
+body[data-theme='dark'] .form-select {
+    @apply text-sm text-white bg-gray-700 border border-gray-900 shadow;
+}
+
+.input-group {
+    @apply mb-5;
+    & > label {
+        @apply block mb-1 text-sm font-medium leading-5 text-gray-700;
+    }
+}
+
+body[data-theme='dark'] .input-group {
+    & > label {
+        @apply text-gray-100;
+    }
+}
+
+.form-input:disabled {
+    @apply opacity-50 cursor-not-allowed;
+}

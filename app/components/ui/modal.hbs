@@ -1,0 +1,93 @@
+<BsModal 
+    @position={{@options.position}} 
+    @size={{@options.size}}
+    @backdropTransitionDuration={{@options.backdropTransitionDuration}} 
+    @renderInPlace={{@options.renderInPlace}}
+    @transitionDuration={{@options.transitionDuration}} 
+    @open={{@modalIsOpened}} 
+    @onSubmit={{fn @confirm}}
+    @onHide={{fn @decline}} 
+    class={{@options.modalClass}} 
+    as |modal|>
+    <modal.header class={{@options.headerClass}}>
+        {{#if @options.titleComponent}}
+            {{component @options.titleComponent options=@options modal=modal}}
+        {{else}}
+            <BsModal::Header::Title>
+                {{@options.title}}
+            </BsModal::Header::Title>
+        {{/if}}
+    </modal.header>
+    <modal.body class={{@options.bodyClass}}>
+        {{#if @options.bodyComponent}}
+            {{component @options.bodyComponent options=@options modal=modal}}
+        {{else}}
+            {{yield @options modal}}
+        {{/if}}
+    </modal.body>
+    <modal.footer class={{@options.footerClass}}>
+        {{#if @options.footerComponent}}
+            {{component @options.footerComponent options=@options confirm=modal.submit modal=modal}}
+        {{else}}
+            <div class="modal-footer-actions">
+                <OpsWiz::Button 
+                    class="mr-2 {{if @options.hideDeclineButton "hidden"}}"
+                    @type={{or @options.declineButtonScheme "primary"}} 
+                    @outline={{or @options.declineButtonOutline true}}
+                    @size={{or @options.buttonSize "md"}}
+                    @icon={{@options.declineButtonIcon}} 
+                    @text={{or @options.declineButtonText "Cancel"}}
+                    @onClick={{fn modal.close}} 
+                    @disabled={{or @options.declineButtonDisabled @options.isLoading}} 
+                />
+                {{#if @options.footerButtons}}
+                    {{#each @options.footerButtons as |button|}}
+                        {{#if button.options}}
+                            <div class="opswiz-button">
+                                <BsDropdown 
+                                    @tagName="button" 
+                                    @class="px-2 mr-2 btn {{if button.class button.class 'btn-primary btn-outline-primary'}}" 
+                                    @closeOnMenuClick={{false}}
+                                    @renderInPlace={{true}}
+                                    as |dd|>
+                                    <dd.toggle class="flex items-center justify-between">
+                                        <span class="mr-2">
+                                            {{button.title}}
+                                        </span>
+                                        {{svg-jar "chevron-down" width="12" height="12"}}
+                                    </dd.toggle>
+                                    <dd.menu as |menu|>
+                                        {{#each button.options as |menuOption|}}
+                                            <menu.item>
+                                                <a href="javascript:;" class="dropdown-item" {{on "click" (fn menuOption.action)}}>
+                                                    {{menuOption.title}}
+                                                </a>
+                                            </menu.item>
+                                        {{/each}}
+                                    </dd.menu>
+                                </BsDropdown>
+                            </div>
+                        {{else}}
+                            <Ui::Button 
+                                class={{button.class}} 
+                                @text={{button.title}} 
+                                @outline={{button.outline}} 
+                                @type={{button.type}} 
+                                @onClick={{button.action}}
+                            />
+                        {{/if}}
+                    {{/each}}
+                {{/if}}
+                <Ui::Button 
+                    @type={{or @options.acceptButtonScheme "primary"}} 
+                    @size={{or @options.buttonSize "md"}}
+                    @icon={{@options.acceptButtonIcon}} 
+                    @isLoading={{@options.isLoading}}
+                    @text={{or @options.acceptButtonText "Confirm"}} 
+                    @onClick={{fn modal.submit}}
+                    @disabled={{or @options.acceptButtonDisabled @options.isLoading}} 
+                />
+            </div>
+        {{/if}}
+    </modal.footer>
+</BsModal>

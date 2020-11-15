@@ -1,0 +1,28 @@
+<span class="btn-wrapper inline-flex rounded-md {{if this.isNotSecondary "shadow-sm"}} {{if @isLoading "is-loading"}} {{@wrapperClass}}">
+    <BsButton
+        class="{{@class}} {{if @isLoading "btn-is-loading"}}"
+        @buttonType={{@buttonType}}
+        @type={{@type}}
+        @outline={{@outline}}
+        @size={{@size}}
+        @active={{@active}}
+        @onClick={{@onClick}}
+        disabled={{this.isDisabled}}
+        ...attributes
+    >
+        {{#if @isLoading}}
+            <span class="btn-icon-wrapper btn-loading-icon-wrapper" data-icon-prefix={{@iconPrefix}}>
+                <FaIcon @prefix={{@iconPrefix}} @icon="spinner-third" @spin={{true}} class="mr-2" />
+            </span>
+        {{/if}}
+        {{#if this.displayIcon}}
+            <span class="btn-icon-wrapper">
+                <FaIcon @icon={{@icon}} @size={{@iconSize}} @rotation={{@iconRotation}} @flip={{@iconFlip}} @spin={{@iconSpin}} class="mr-2 {{@iconClass}}" />
+            </span>
+        {{/if}}
+        <span class={{@textClass}}>
+            {{@text}}
+        </span>
+        {{yield}}
+    </BsButton>
+</span>

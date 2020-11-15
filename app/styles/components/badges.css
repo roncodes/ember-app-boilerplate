@@ -1,0 +1,71 @@
+.status-badge {
+    width: fit-content;
+    & span {
+        @apply text-gray-800 bg-gray-100;
+        & svg {
+            @apply text-gray-400;
+        }
+    }
+
+    &[class*='2'],
+    &.live-status-badge,
+    &.enabled-status-badge,
+    &.success-status-badge,
+    &.succeeded-status-badge,
+    &.operational-status-badge,
+    &.active-status-badge,
+    &.completed-status-badge {
+        & span {
+            @apply text-green-800 bg-green-100;
+            & svg {
+                @apply text-green-400;
+            }
+        }
+    }
+
+    &[class*='5'],
+    &.disabled-status-badge,
+    &.failed-status-badge,
+    &.canceled-status-badge {
+        & span {
+            @apply text-red-800 bg-red-100;
+            & svg {
+                @apply text-red-400;
+            }
+        }
+    }
+
+    &[class*='4'],
+    &.test-status-badge,
+    &.warning-status-badge,
+    &.pending-status-badge {
+        & span {
+            @apply text-yellow-800 bg-yellow-100;
+            & svg {
+                @apply text-yellow-400;
+            }
+        }
+    }
+
+    &.assigned-status-badge {
+        & span {
+            @apply text-indigo-800 bg-indigo-100;
+            & svg {
+                @apply text-indigo-400;
+            }
+        }
+    }
+
+    &.in-progress-status-badge {
+        & span {
+            @apply text-blue-800 bg-blue-100;
+            & svg {
+                @apply text-blue-400;
+            }
+        }
+    }
+}
+
+body[data-theme='dark'] .status-badge {
+    @apply shadow;
+}

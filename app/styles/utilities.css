@@ -1,0 +1,21 @@
+/** custom utility css **/
+.w-86 {
+    width: 30rem;
+}
+
+/** fa spin speeds **/
+.fa-spin-1s {
+    animation: fa-spin 1s infinite linear;
+}
+
+.fa-spin-800ms {
+    animation: fa-spin 800ms infinite linear;
+}
+
+.fa-spin-500ms {
+    animation: fa-spin 500ms infinite linear;
+}
+
+.fa-spin-300ms {
+    animation: fa-spin 300ms infinite linear;
+}
